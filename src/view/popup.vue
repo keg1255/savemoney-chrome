@@ -15,6 +15,12 @@
 			<li class="numbered">打开淘宝/京东商品页</li>
 			<li class="numbered">右侧出现商品返利信息</li>
 		</ol>
+		<div class="line">
+			<label>
+				<input v-model="config.short" type="checkbox" />
+				<span>复制短链接</span>
+			</label>
+		</div>
 	</div>
 </template>
 
@@ -95,5 +101,33 @@ input:hover {
 	margin-right: 8px; /* 文字和输入框之间的间距 */
 	font-size: 14px; /* 文字大小 */
 	white-space: nowrap; /* 文字不换行 */
+}
+
+/* 美化 line 样式 */
+.line {
+	margin-left: 16px;
+	padding: 12px;
+	border-radius: 4px;
+}
+
+.line label {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+.line input[type="checkbox"] {
+	width: auto;
+	margin-right: 8px;
+	cursor: pointer;
+}
+
+.line span {
+	font-size: 14px;
+	color: #333;
+}
+
+.line label:hover span {
+	color: #007bff;
 }
 </style>

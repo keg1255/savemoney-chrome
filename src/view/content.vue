@@ -59,13 +59,10 @@ export default {
 		copy: debounce(function () {
 			if (!this.item) return;
 			this.log("获取返利");
-			callBackground("coupon", this.item)
+			callBackground("coupon", {...this.item, pastable: 2})
 				.then((data) => {
 					console.log("xxxx", data);
-					let m = /https?:[\w\/\.\?=&%]+/.exec(data);
-					if (m) {
-						copy(m[0]) && this.log("链接已复制");
-					}
+					copy(config.short ? data.url : data.click_url) && this.log("链接已复制");
 				})
 				.catch((err) => {
 					console.error("xxxx", err);

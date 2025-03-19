@@ -1,6 +1,7 @@
 const manifest = {
 	name: "返省",
-	description: "返省,淘宝/京东返利,优惠查询",
+	description:
+		"返省,淘宝/京东返利,优惠查询。打开淘宝/京东商品页面左侧会显示返利信息，点击图标可以获取返利链接，通过链接下单获取返利。",
 	author: "keg1255",
 	homepage_url: "https://github.com/keg1255/savemoney-chrome",
 	manifest_version: 3,
@@ -11,7 +12,7 @@ const manifest = {
 		128: "icons/128x128.png",
 	},
 	permissions: ["storage"],
-	host_permissions: ["*://item.taobao.com/*", "*://item.jd.com/*"],
+	// host_permissions: ["*://item.taobao.com/*", "*://item.jd.com/*"],
 	// optional_host_permissions: ["*://*/*"],
 	action: {
 		default_title: "返省",
@@ -28,7 +29,7 @@ const manifest = {
 		{
 			js: ["js/content.js"],
 			run_at: "document_end",
-			matches: ["<all_urls>"],
+			matches: ["*://item.taobao.com/*", "*://item.jd.com/*"],
 			all_frames: false,
 		},
 	],
