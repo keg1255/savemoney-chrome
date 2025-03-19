@@ -29,7 +29,7 @@ const manifest = {
 		{
 			js: ["js/content.js"],
 			run_at: "document_end",
-			matches: ["*://item.taobao.com/*", "*://item.jd.com/*"],
+			matches: ["*://item.taobao.com/*", "*://item.jd.com/*", "*://detail.tmall.com/*"],
 			all_frames: false,
 		},
 	],

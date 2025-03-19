@@ -26,8 +26,13 @@ export default {
 	mounted() {
 		console.log("xxxx", config);
 		let user_type = -1;
-		if (location.host.indexOf("item.taobao.com") >= 0) {
+		let title = location.href;
+		if (
+			location.host.indexOf("item.taobao.com") >= 0 ||
+			location.host.indexOf("detail.tmall.com") >= 0
+		) {
 			user_type = 1;
+			title = title.replace("detail.tmall.com", "item.taobao.com");
 		} else if (location.host.indexOf("item.jd.com") >= 0) {
 			user_type = 2;
 		}
@@ -36,10 +41,9 @@ export default {
 		document.body.appendChild(el);
 		console.log("xxxx", chrome.runtime.getURL("icons/icon.png"));
 		this.log("查询中...");
-		callBackground("lookup", {user_type, title: location.href})
+		callBackground("lookup", {user_type, title})
 			.then((data) => {
 				if (!data) return this.log(`没有返利`);
-				console.log("xxxx", data);
 				this.item = data;
 				if (data.coupon_amount) this.log(`减${data.coupon_amount}元`);
 				let rate = (data.commission_rate * 0.9 * 0.6) / 100;
@@ -61,7 +65,6 @@ export default {
 			this.log("获取返利");
 			callBackground("coupon", {...this.item, pastable: 2})
 				.then((data) => {
-					console.log("xxxx", data);
 					copy(config.short ? data.url : data.click_url) && this.log("链接已复制");
 				})
 				.catch((err) => {
