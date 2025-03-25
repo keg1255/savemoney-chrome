@@ -34,7 +34,9 @@ export default {
 			user_type = 1;
 			title = title.replace("detail.tmall.com", "item.taobao.com");
 		} else if (location.host.indexOf("item.jd.com") >= 0) {
-			user_type = 2;
+			user_type = 5;
+		} else if (location.host.indexOf("mobile.yangkeduo.com") >= 0) {
+			user_type = 3;
 		}
 		if (user_type == -1) return;
 		const el = this.$el;
